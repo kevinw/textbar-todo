@@ -5,13 +5,16 @@ import subprocess
 import traceback
 import re
 
-TODO_FILE = "/Users/kevin/Dropbox/TODO.txt"
-TODONE_FILE = "/Users/kevin/Dropbox/todo/ToDone.txt"
-log = open("/Users/kevin/Desktop/log.txt", "a")
+TODO_FILE = os.path.expanduser("~/Dropbox/TODO.txt")
+TODONE_FILE = os.path.expanduser("~/Dropbox/ToDone.txt")
+
+# log = open(os.path.expanduser("~/Desktop/log.txt"), "a")
+log = None
 
 
 def write_log(msg):
-    log.write(msg + "\n")
+    if log:
+        log.write(msg + "\n")
 
 
 class INDEX:
@@ -39,7 +42,7 @@ def get_verb(todo):
 
 def styled(m):
     return m
-    #return """<html><font face="helveticaneue-thin">%s</font></html>""" % m
+    # return """<html><font face="helveticaneue-thin">%s</font></html>""" % m
 
 
 def print_menu():
